@@ -1,0 +1,22 @@
+HEX 001.jpg 2432x1600 aspect=strip sat=0.49 bright=0.73 hue_hist={0: 0.94, 30: 0.06} color=deep red edge=0.396
+HEX 002.jpg 2432x1600 aspect=strip sat=0.04 bright=0.93 hue_hist={} color=monochrome black edge=0.223
+HEX 005.jpg 2432x1600 aspect=strip sat=0.12 bright=0.91 hue_hist={0: 1.0} color=deep red edge=0.403
+HEX 006.jpg 2432x1600 aspect=strip sat=0.04 bright=0.93 hue_hist={} color=monochrome black edge=0.243
+HEX 009.jpg 2048x2048 aspect=full sat=0.01 bright=0.88 hue_hist={} color=monochrome black edge=0.353
+HEX 010.jpg 2432x1600 aspect=strip sat=0.05 bright=0.86 hue_hist={} color=monochrome black edge=0.354
+HEX 011.jpg 2432x1600 aspect=strip sat=0.21 bright=0.92 hue_hist={0: 1.0} color=deep red edge=0.431
+HEX 012.jpg 2432x1600 aspect=strip sat=0.28 bright=0.54 hue_hist={30: 0.07, 60: 0.01, 90: 0.0, 120: 0.27, 150: 0.65} color=rich multicolor palette edge=0.625
+HEX 013.jpg 2432x1600 aspect=strip sat=0.36 bright=0.19 hue_hist={0: 0.29, 30: 0.63, 60: 0.0, 90: 0.0, 120: 0.0, 150: 0.01, 180: 0.03, 210: 0.01, 240: 0.01, 270: 0.0, 300: 0.0, 330: 0.0} color=rich multicolor palette edge=0.412
+HEX 014.jpg 2432x1600 aspect=strip sat=0.00 bright=0.87 hue_hist={} color=monochrome black edge=0.421
+HEX 015.jpg 2432x1600 aspect=strip sat=0.01 bright=0.91 hue_hist={} color=monochrome black edge=0.280
+FLO 003.jpg 2496x1600 aspect=strip sat=0.23 bright=0.86 hue_hist={0: 0.22, 30: 0.78} color=green and gold edge=0.304
+FLO 004.jpg 2560x1696 aspect=strip sat=0.45 bright=0.51 hue_hist={0: 0.37, 30: 0.03, 180: 0.58, 210: 0.02, 330: 0.0} color=rich multicolor palette edge=0.378
+FLO 007.jpg 2496x1600 aspect=strip sat=0.12 bright=0.93 hue_hist={0: 0.65, 30: 0.35} color=monochrome black edge=0.148
+FLO 008.jpg 2560x1696 aspect=strip sat=0.43 bright=0.51 hue_hist={0: 0.37, 30: 0.02, 180: 0.6, 210: 0.0, 330: 0.0} color=rich multicolor palette edge=0.407
+FLO 016.jpg 2496x1600 aspect=strip sat=0.08 bright=0.87 hue_hist={0: 0.72, 30: 0.25, 60: 0.01, 90: 0.03} color=monochrome black edge=0.417
+FLO 017.jpg 2496x1600 aspect=strip sat=0.25 bright=0.54 hue_hist={0: 0.24, 30: 0.14, 210: 0.59, 240: 0.0, 300: 0.0, 330: 0.02} color=indigo blue edge=0.460
+FLO 018.jpg 2496x1600 aspect=strip sat=0.01 bright=0.88 hue_hist={} color=monochrome black edge=0.353
+FLO 019.jpg 2656x1536 aspect=strip sat=0.31 bright=0.54 hue_hist={0: 0.33, 30: 0.02, 180: 0.3, 210: 0.17, 330: 0.18} color=rich multicolor palette edge=0.343
+FLO 020.jpg 2656x1536 aspect=strip sat=0.25 bright=0.83 hue_hist={0: 0.81, 30: 0.07, 60: 0.0, 90: 0.0, 120: 0.12, 150: 0.0} color=deep red edge=0.401
+FLO 021.jpg 2656x1536 aspect=strip sat=0.42 bright=0.82 hue_hist={0: 0.23, 30: 0.55, 60: 0.03, 180: 0.02, 210: 0.04, 330: 0.13} color=green and gold edge=0.410
+FLO brocade-ground49.png 490x198 aspect=strip sat=0.28 bright=0.63 hue_hist={0: 0.0, 30: 0.01, 240: 0.01, 270: 0.91, 300: 0.07, 330: 0.0} color=deep red edge=0.464
