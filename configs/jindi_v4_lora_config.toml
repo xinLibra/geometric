@@ -1,0 +1,96 @@
+# 锦地纹 LoRA v4 训练配置（新数据集·两类：六边/龟甲 + 花填几何）
+# 数据：dataset_floral/ 两子目录（N_ 前缀 = repeats=2）
+#   2_jindi_hex     11张  ichpattern_jindi_hex
+#   2_jindi_floral  11张  ichpattern_jindi_floral
+# 步数：22源图 × repeats2 = 44图/epoch × 6 epoch = 264步
+# caption：统一模板（触发词→子类→flat→疏密→排布→对称→文化符号强度→配色→完整纹样）
+# 疏密：每类 40%稀疏 / 50%中等 / 10%繁复；配色按图实际（黑白/棕/红/蓝/金/绿金/多彩）
+
+# === 基础模型 ===
+pretrained_model_name_or_path = "C:/LoraTraining/stable-diffusion-webui/models/Stable-diffusion/v1-5-pruned-emaonly.safetensors"
+tokenizer_cache_dir = "C:/LoraTraining/kohya_ss/tokenizer_cache"
+
+# === 训练数据 ===
+train_data_dir = "C:/LoraTraining/geometric/datasets/jindi/dataset_floral"
+caption_extension = ".txt"
+shuffle_caption = true
+max_token_length = 75
+clip_skip = 1
+keep_tokens = 1
+caption_dropout_rate = 0.05
+
+# === 输出设置 ===
+output_dir = "C:/LoraTraining/geometric/output/jindi_v4"
+output_name = "ICH_jindi_pattern_lora_v4"
+save_model_as = "safetensors"
+save_precision = "fp16"
+save_every_n_epochs = 1
+save_state = true
+mixed_precision = "bf16"
+gradient_checkpointing = false
+sdpa = true
+max_data_loader_n_workers = 2
+device = "cuda"
+
+# === 批次与分辨率 ===
+train_batch_size = 1
+gradient_accumulation_steps = 1
+resolution = "512,512"
+enable_bucket = true
+min_bucket_reso = 256
+max_bucket_reso = 1024
+bucket_reso_steps = 64
+
+# === 训练步数 ===
+max_train_epochs = 6
+max_train_steps = 0
+
+# === LoRA 网络配置 ===
+network_module = "networks.lora"
+network_dim = 16
+network_alpha = 8
+network_dropout = 0.1
+
+# === 优化器配置 ===
+learning_rate = 1.8e-5
+text_encoder_lr = 1.8e-5
+unet_lr = 1.8e-5
+lr_scheduler = "cosine"
+lr_scheduler_num_cycles = 1
+
+optimizer_type = "AdamW"
+optimizer_args = ["weight_decay=0.01", "betas=0.9,0.95"]
+
+# === 数据增强 ===
+color_aug = false
+flip_aug = true
+
+# === 噪声配置 ===
+loss_type = "l2"
+
+# === 缓存设置 ===
+cache_latents = false
+cache_latents_to_disk = false
+
+# === 采样/日志 ===
+sample_every_n_epochs = 1
+sample_prompts = "C:/LoraTraining/geometric/configs/sample_prompts_jindi_v4.txt"
+sample_frames = 1
+sample_sampler = "euler_a"
+sample_steps = 28
+
+# === 调试/日志 ===
+logging_dir = "C:/LoraTraining/geometric/output/jindi_v4/logs"
+log_tracker_to_console = true
+
+# === 其他 ===
+seed = 42
+v2 = false
+v_pred = false
+
+# === 元数据 ===
+metadata_title = "ICH Jindi (Brocade Ground) Pattern LoRA v4"
+metadata_author = "LoRA Training"
+metadata_description = "Chinese traditional jin-di (brocade ground) geometric pattern LoRA v4 - 2 subclasses (hex/turtle-shell and floral-filled geometric), new 22-image dataset with per-image color captions, density split 40% sparse/50% medium/10% dense, lr=1.8e-5, dim=16/alpha=8, bf16 sdpa flip_aug, 6 epochs, 264 steps, triggers: ichpattern_jindi_hex, ichpattern_jindi_floral"
+metadata_tags = "ichpattern_jindi_hex,ichpattern_jindi_floral,jin di pattern,hex pattern,turtle shell pattern,floral geometric,chinese traditional pattern,geometric pattern,decorative motif,flat pattern design,seamless repeat,ICH pattern"
+metadata_trigger_phrase = "ichpattern_jindi_hex, ichpattern_jindi_floral"

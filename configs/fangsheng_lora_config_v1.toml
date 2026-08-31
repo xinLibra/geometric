@@ -1,0 +1,99 @@
+# 方胜纹 LoRA v1 训练配置
+# 数据：30源图中精选24张 -> 48张训练图
+#   5_fangsheng_border/  中心留白边框型 7源图×flip=14张, repeats=5  (oversample 核心)
+#   4_fangsheng_single/  独立结/中心图案 9源图×flip=18张, repeats=4
+#   3_fangsheng_tile/    连续纹样 8源图×flip=16张, repeats=3
+# 训练步数：14×5 + 18×4 + 16×3 = 190步/epoch × 8 epoch = 1520步
+# 触发词：ichpattern_fangsheng
+
+# === 基础模型 ===
+pretrained_model_name_or_path = "C:/LoraTraining/stable-diffusion-webui/models/Stable-diffusion/v1-5-pruned-emaonly.safetensors"
+tokenizer_cache_dir = "C:/LoraTraining/kohya_ss/tokenizer_cache"
+
+# === 训练数据 ===
+train_data_dir = "C:/LoraTraining/geometric/datasets/fangsheng_continuous/fangsheng_train_v1"
+caption_extension = ".txt"
+shuffle_caption = true
+max_token_length = 75
+clip_skip = 1
+keep_tokens = 1
+caption_dropout_rate = 0.05
+
+# === 输出设置 ===
+output_dir = "C:/LoraTraining/geometric/output/fangsheng_v1"
+output_name = "ICH_fangsheng_pattern_lora_v1"
+save_model_as = "safetensors"
+save_precision = "fp16"
+save_every_n_epochs = 1
+save_every_n_steps = 100
+save_state = true
+mixed_precision = "bf16"
+gradient_checkpointing = false
+sdpa = true
+max_data_loader_n_workers = 2
+device = "cuda"
+
+# === 批次与分辨率 ===
+train_batch_size = 1
+gradient_accumulation_steps = 1
+resolution = "512,512"
+enable_bucket = true
+min_bucket_reso = 256
+max_bucket_reso = 1024
+bucket_reso_steps = 64
+
+# === 训练步数 ===
+max_train_epochs = 8
+max_train_steps = 0
+
+# === LoRA 网络配置 ===
+network_module = "networks.lora"
+network_dim = 16
+network_alpha = 8
+network_dropout = 0.1
+
+# === 优化器配置 ===
+learning_rate = 3e-5
+text_encoder_lr = 3e-5
+unet_lr = 3e-5
+lr_scheduler = "cosine"
+lr_scheduler_num_cycles = 1
+lr_decay_steps = 0.5
+
+optimizer_type = "AdamW"
+optimizer_args = ["weight_decay=0.01", "betas=0.9,0.95"]
+
+# === 数据增强 ===
+color_aug = false
+flip_aug = false
+
+# === 噪声配置 ===
+loss_type = "l2"
+noise_offset_type = "Original"
+
+# === 缓存设置 ===
+cache_latents = false
+cache_latents_to_disk = false
+
+# === 采样/日志 ===
+sample_every_n_epochs = 1
+sample_prompts = "C:/LoraTraining/geometric/configs/sample_prompts_fangsheng_v1.txt"
+sample_frames = 1
+sample_sampler = "euler_a"
+sample_steps = 28
+
+# === 调试/日志 ===
+logging_dir = "C:/LoraTraining/geometric/output/fangsheng_v1/logs"
+log_tracker_to_console = true
+
+# === 其他 ===
+seed = 42
+v2 = false
+v_pred = false
+
+# === 元数据 ===
+metadata_title = "ICH Fangsheng Pattern LoRA v1"
+metadata_author = "LoRA Training"
+metadata_description = "Chinese traditional fangsheng (overlapping lozenge) decorative pattern LoRA v1 - 24 high-quality source images (7 open-center borders oversampled, 9 single knots, 8 continuous tiles), per-image captions, dim=16/alpha=8, bf16 GPU, trigger: ichpattern_fangsheng"
+metadata_tags = "ichpattern_fangsheng,fangsheng pattern,chinese traditional pattern,geometric pattern,decorative motif,flat pattern design,overlapping lozenge,border frame,open center,seamless tile,traditional chinese pattern,ICH pattern"
+metadata_trigger_phrase = "ichpattern_fangsheng"

@@ -1,0 +1,9 @@
+﻿# 数据与输出（按需决定是否跟踪；大数据建议不提交）
+output/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+__pycache__/
+.DS_Store
+Thumbs.db

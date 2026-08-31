@@ -1,0 +1,5 @@
+ichpattern_fangsheng, traditional Chinese fangsheng pattern, fangsheng border frame, open center frame, medium density, fusion friendly, monochrome black on white, clean geometric lines, highly detailed --w 512 --h 512 --d 42 --l 7 --s 20
+ichpattern_fangsheng, single fangsheng knot, centered medallion, isolated motif, monochrome black on white, simple sparse detail, clean geometric lines --w 512 --h 512 --d 43 --l 7 --s 20
+ichpattern_fangsheng, seamless fangsheng lattice, tileable continuous pattern, balanced density, limited color palette, red and gold, clean geometric lines --w 512 --h 512 --d 44 --l 7 --s 20
+ichpattern_fangsheng, fangsheng border frame, open center frame, leave space for floral motifs, teal green on white, square border frame, medium density --w 512 --h 512 --d 45 --l 7 --s 20
+ichpattern_fangsheng, traditional Chinese fangsheng pattern, square border frame, warm cream on white, elegant ornamental border, fusion friendly --w 512 --h 512 --d 46 --l 7 --s 20

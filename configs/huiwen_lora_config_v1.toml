@@ -1,0 +1,98 @@
+# 回纹 LoRA v1 训练配置
+# 数据：46源图 → 92张 (orig+flip)，repeats=2
+# repeats=2, 92×2=184步/epoch × 6 epoch = 1104步
+# 触发词：ichpattern_huiwen
+# 分辨率512（GPU: RTX 5060 8GB），几何纹样细节中等，dim=16/alpha=8
+# 输出：geometric/output/huiwen_v1
+
+# === 基础模型 ===
+pretrained_model_name_or_path = "C:/LoraTraining/stable-diffusion-webui/models/Stable-diffusion/v1-5-pruned-emaonly.safetensors"
+tokenizer_cache_dir = "C:/LoraTraining/kohya_ss/tokenizer_cache"
+
+# === 训练数据 ===
+train_data_dir = "C:/LoraTraining/geometric/datasets/huiwen/huiwen_train_v1"
+caption_extension = ".txt"
+shuffle_caption = true
+max_token_length = 75
+clip_skip = 1
+keep_tokens = 1
+caption_dropout_rate = 0.1
+
+# === 输出设置 ===
+output_dir = "C:/LoraTraining/geometric/output/huiwen_v1"
+output_name = "ICH_huiwen_pattern_lora_v1"
+save_model_as = "safetensors"
+save_precision = "fp16"
+save_every_n_epochs = 1
+save_every_n_steps = 100
+save_state = true
+mixed_precision = "bf16"
+gradient_checkpointing = false
+sdpa = true
+max_data_loader_n_workers = 2
+device = "cuda"
+
+# === 批次与分辨率 ===
+train_batch_size = 1
+gradient_accumulation_steps = 1
+resolution = "512,512"
+enable_bucket = true
+min_bucket_reso = 256
+max_bucket_reso = 1024
+bucket_reso_steps = 64
+
+# === 训练步数 ===
+max_train_epochs = 6
+max_train_steps = 0
+
+# === LoRA 网络配置（回纹几何纹样，dim=16/alpha=8）===
+network_module = "networks.lora"
+network_dim = 16
+network_alpha = 8
+network_dropout = 0.1
+
+# === 优化器配置 ===
+learning_rate = 4e-5
+text_encoder_lr = 4e-5
+unet_lr = 4e-5
+lr_scheduler = "cosine"
+lr_scheduler_num_cycles = 1
+lr_decay_steps = 0.5
+
+optimizer_type = "AdamW"
+optimizer_args = ["weight_decay=0.01", "betas=0.9,0.95"]
+
+# === 数据增强 ===
+color_aug = false
+flip_aug = false
+
+# === 噪声配置 ===
+loss_type = "l2"
+noise_offset_type = "Original"
+
+# === 缓存设置 ===
+cache_latents = false
+cache_latents_to_disk = false
+
+# === 采样/日志 ===
+sample_every_n_epochs = 1
+sample_prompts = "C:/LoraTraining/geometric/configs/sample_prompts_huiwen_v1.txt"
+sample_frames = 1
+sample_sampler = "euler_a"
+sample_steps = 28
+
+# === 调试/日志 ===
+logging_dir = "C:/LoraTraining/geometric/output/huiwen_v1/logs"
+log_tracker_to_console = true
+
+# === 其他 ===
+seed = 42
+v2 = false
+v_pred = false
+
+# === 元数据 ===
+metadata_title = "ICH Huiwen Pattern LoRA v1 - Chinese Key-Fret Geometric Pattern"
+metadata_author = "LoRA Training"
+metadata_description = "Chinese traditional huiwen (key-fret) decorative geometric pattern LoRA v1 - 92 images (46 source x orig+flip), dimension scores, dim=16/alpha=8, trigger: ichpattern_huiwen"
+metadata_tags = "ichpattern_huiwen,key-fret pattern,chinese traditional pattern,geometric pattern,decorative motif,flat pattern design,seamless repeat,traditional chinese pattern,ICH pattern"
+metadata_trigger_phrase = "ichpattern_huiwen"

@@ -1,0 +1,99 @@
+# 方胜纹 · 单独 LoRA v1 训练配置
+# 独立 LoRA（与连续分开训，避免抢特征）
+# 数据: 单独徽章 26 张（复用 v4 单独副本，源图方胜纹新/单独纹样）
+#       fangsheng_single_train_v1/2_fangsheng_single  (repeats=2 -> 52 步/epoch)
+# 触发词: ichpattern_fangsheng_single
+# 超参: dim=8/alpha=4, lr=1e-5 cosine, 8 epoch -> 416 步
+# Caption v1: two overlapping diamonds interlocking, nested diamond lattice, geometric diamond cross
+# 验收: 居中、双菱交叠清楚、不散架、线条干净；优先 E2~E5
+
+# === 基础模型 ===
+pretrained_model_name_or_path = "C:/LoraTraining/stable-diffusion-webui/models/Stable-diffusion/v1-5-pruned-emaonly.safetensors"
+tokenizer_cache_dir = "C:/LoraTraining/kohya_ss/tokenizer_cache"
+
+# === 训练数据 ===
+train_data_dir = "C:/LoraTraining/geometric/datasets/fangsheng_single/fangsheng_single_train_v1"
+caption_extension = ".txt"
+shuffle_caption = true
+max_token_length = 75
+clip_skip = 1
+keep_tokens = 1
+caption_dropout_rate = 0.05
+
+# === 输出设置 ===
+output_dir = "C:/LoraTraining/geometric/output/fangsheng_single_v1"
+output_name = "ICH_fangsheng_single_lora_v1"
+save_model_as = "safetensors"
+save_precision = "fp16"
+save_every_n_epochs = 1
+save_every_n_steps = 100
+save_state = true
+mixed_precision = "bf16"
+gradient_checkpointing = false
+sdpa = true
+max_data_loader_n_workers = 2
+device = "cuda"
+
+# === 批次与分辨率 ===
+train_batch_size = 1
+gradient_accumulation_steps = 1
+resolution = "512,512"
+enable_bucket = true
+min_bucket_reso = 256
+max_bucket_reso = 1024
+bucket_reso_steps = 64
+
+# === 训练步数 ===
+max_train_epochs = 8
+max_train_steps = 0
+
+# === LoRA 网络配置 ===
+network_module = "networks.lora"
+network_dim = 8
+network_alpha = 4
+network_dropout = 0.1
+
+# === 优化器配置 ===
+learning_rate = 1e-5
+text_encoder_lr = 1e-5
+unet_lr = 1e-5
+lr_scheduler = "cosine"
+lr_scheduler_num_cycles = 1
+
+optimizer_type = "AdamW"
+optimizer_args = ["weight_decay=0.01", "betas=0.9,0.95"]
+
+# === 数据增强 ===
+color_aug = false
+flip_aug = true
+
+# === 噪声配置 ===
+loss_type = "l2"
+noise_offset_type = "Original"
+
+# === 缓存设置 ===
+cache_latents = false
+cache_latents_to_disk = false
+
+# === 采样/日志 ===
+sample_every_n_epochs = 1
+sample_prompts = "C:/LoraTraining/geometric/configs/sample_prompts_fangsheng_single_v1.txt"
+sample_frames = 1
+sample_sampler = "euler_a"
+sample_steps = 28
+
+# === 调试/日志 ===
+logging_dir = "C:/LoraTraining/geometric/output/fangsheng_single_v1/logs"
+log_tracker_to_console = true
+
+# === 其他 ===
+seed = 42
+v2 = false
+v_pred = false
+
+# === 元数据 ===
+metadata_title = "ICH Fangsheng Single Pattern LoRA v1"
+metadata_author = "LoRA Training"
+metadata_description = "Chinese traditional fangsheng single pattern LoRA v1 - standalone single LoRA, 26 source images (centered fangsheng medallion, two overlapping diamonds), dim=8/alpha=4, lr=1e-5 cosine, 8 epochs x 52 steps = 416 steps, bf16+sdpa+flip, trigger: ichpattern_fangsheng_single"
+metadata_tags = "ichpattern_fangsheng_single,fangsheng single,overlapping diamonds,nested diamond lattice,interlocking diamond cross,chinese traditional pattern,geometric pattern,single motif,centered medallion,decorative motif,ICH pattern"
+metadata_trigger_phrase = "ichpattern_fangsheng_single"
